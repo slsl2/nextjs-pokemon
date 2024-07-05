@@ -43,7 +43,12 @@ const PokemonDetailPage = async ({ params }: { params: { id: string } }) => {
         <p>
           특성:{" "}
           {pokemon.abilities.map((ability, index) => (
-            <span key={index}>{ability.ability.korean_name}</span>
+            <span
+              key={index}
+              className="ml-1 py-1 px-4 rounded-md bg-green-500 text-sm text-white"
+            >
+              {ability.ability.korean_name}
+            </span>
           ))}
         </p>
         <p>기술:</p>
