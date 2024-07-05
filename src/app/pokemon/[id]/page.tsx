@@ -31,15 +31,20 @@ const PokemonDetailPage = async ({ params }: { params: { id: string } }) => {
         </p>
         <p>
           <span>타입: </span>
-          <span className="py-1 px-4 rounded-md bg-blue-500 text-sm text-white">
-            {pokemon.types.map((type) => type.type.korean_name).join(" ")}
-          </span>
+          {pokemon.types.map((type, index) => (
+            <span
+              key={index}
+              className="ml-1 py-1 px-4 rounded-md bg-blue-500 text-sm text-white"
+            >
+              {type.type.korean_name}
+            </span>
+          ))}
         </p>
         <p>
           특성:{" "}
-          {pokemon.abilities
-            .map((ability) => ability.ability.korean_name)
-            .join(" ")}
+          {pokemon.abilities.map((ability, index) => (
+            <span key={index}>{ability.ability.korean_name}</span>
+          ))}
         </p>
         <p>기술:</p>
         <p className="text-sm leading-[200%]">
