@@ -3,22 +3,32 @@ import React from "react";
 import { Pokemon } from "../types/pokemon";
 import Link from "next/link";
 import Image from "next/image";
+import Loading from "./Loading";
 
 const PokemonList: React.FC = () => {
   const [pokemonsData, setPokemonsData] = React.useState<Pokemon[]>([]);
+  const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
     const fetchInitialData = async () => {
       const response = await fetch("/api/pokemons");
       const data = await response.json();
       setPokemonsData(data);
+      setLoading(false);
     };
     fetchInitialData();
   }, []);
 
+  // if (loading) {
+  //   return <Loading />;
+  // }
+
   return (
     <>
-      <div className="grid grid-cols-6 gap-6 w-4/5 max-w-screen-lg my-0 mx-auto">
+      <div
+        id="pokemons-list-container"
+        className="grid grid-cols-6 gap-6 place-items-center w-4/5 max-w-screen-lg my-0 mx-auto"
+      >
         {pokemonsData.map((pokemon) => (
           <div
             key={pokemon.id}
